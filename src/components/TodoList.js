@@ -19,10 +19,10 @@ function TodoList() {
     setDesckstate([""]);
   };
 
-  // const handleDelete = index => {
-  //   const filtered = todos.filter((todo, i) => i !== index);
-  //   setTodos(filtered);
-  // };
+  const handleDelete = index => {
+    const filtered = todos.filter((todo, i) => i !== index);
+    setTodos(filtered);
+  };
 
   const columns = [
     {
@@ -32,6 +32,23 @@ function TodoList() {
     {
       Header: "Description", //Header of the column
       accessor: "description" // Value accessor
+    },
+    {
+      id: "button",
+      sortable: false,
+      filterable: false,
+      width: 100,
+      accessor: "todos",
+      Cell: ({ index }) => (
+        <button
+          className="btn btn-danger sm"
+          onClick={() => {
+            handleDelete(index);
+          }}
+        >
+          Delete
+        </button>
+      )
     }
   ];
 
@@ -55,6 +72,12 @@ function TodoList() {
 
         <input type="submit" value="Add" />
       </form>
+      <ReactTable
+        todos={todos}
+        columns={columns}
+        sortable={true}
+        defaultPageSize={10}
+      />
     </div>
   );
 }
