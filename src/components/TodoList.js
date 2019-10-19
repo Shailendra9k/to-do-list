@@ -25,8 +25,14 @@ function TodoList() {
   // };
 
   const columns = [
-    { Header: "Date", accessor: " date" },
-    { Header: "Description", accessor: "description" }
+    {
+      Header: "Date", //Header of the column
+      accessor: "date" // Value accessor
+    },
+    {
+      Header: "Description", //Header of the column
+      accessor: "description" // Value accessor
+    }
   ];
 
   return (
@@ -49,12 +55,6 @@ function TodoList() {
 
         <input type="submit" value="Add" />
       </form>
-      <ReactTable
-        todos={todos}
-        columns={columns}
-        sortable={true}
-        defaultPageSize={10}
-      />
     </div>
   );
 }
